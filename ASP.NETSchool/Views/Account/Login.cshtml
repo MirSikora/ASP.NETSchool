@@ -1,0 +1,24 @@
+﻿@using ASP.NETSchool.ViewModels;
+@model LoginViewModel
+@{
+    ViewData["Title"] = "Login";
+}
+
+<h4>Login</h4>
+<div asp-validation-summary="All" class="text-danger"></div>
+<form asp-action="Login">
+    <input type="hidden" asp-for="ReturnUrl" disabled />
+    <div class="form-group m-2">
+        <label asp-for="Username"></label>
+        <input type="text" asp-for="Username" class="form-control" />
+    </div>
+    <div class="form-group m-2">
+        <label asp-for="Password"></label>
+        <input type="password" asp-for="Password" class="form-control" />
+    </div>
+    <div class="form-group m-2">
+        <input type="checkbox" asp-for="Remember" />
+        <label class="ms-1" asp-for="Remember">Remember me </label>
+    </div>
+    <button type="submit" class="btn btn-success m-2">Log in</button>
+</form>

@@ -1,0 +1,33 @@
+﻿@model IEnumerable<Subject>
+@{
+    ViewData["Title"] = "Subjects";
+}
+
+<div class="d-flex justify-content-between px-5">
+    <h3>List of subjects</h3>
+    @if (User.IsInRole("Teacher") || User.IsInRole("Admin"))
+    {
+        <a class="btn btn-success" asp-action="Create">Create a new subject</a>
+    }
+</div>
+<table class="table shadow rounded-3 overflow-hidden mt-2">
+    <thead class="bg-primary text-white">
+        <tr>
+            <th>Subject</th>
+            <th>Update</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    @foreach (var subject in Model) {
+        <tr>
+            <td>@subject.Name</td>
+            <td class="w-25">
+                <a class="btn btn-warning w-100" asp-action="Edit" asp-route-id="@subject.Id">Update</a>
+            </td>
+            <td class="w-25">
+                <a class="btn btn-danger w-100" asp-action="Delete" asp-route-id="@subject.Id">Delete</a>
+            </td>
+        </tr>
+    }
+</table>
+

@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Grade>
+@{
+    ViewData["Title"] = "Grades";
+}
+<div class="d-flex justify-content-between px-5">
+    <h3>List of all grades</h3>
+    <a class="btn btn-success" asp-action="Create">Create new</a>
+</div>
+<table class="table shadow rounded-3 overflow-hidden mt-2">
+    <thead class="bg-primary text-white">
+        <tr>
+            <th>Student</th>
+            <th>Subject</th>
+            <th>Topic</th>
+            <th>Mark</th>
+            <th>Date</th>
+            <th>Update</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    @foreach (var grade in Model) {
+        <tr>
+            <td>@grade.Student.FirstName @grade.Student.LastName</td>
+            <td>@grade.Subject.Name</td>
+            <td>@grade.Topic</td>
+            <td>@grade.Mark</td>
+            <td>@grade.Date.ToShortDateString()</td>
+            <td>
+                <a class="btn btn-warning w-100" asp-action="Edit" asp-route-id="@grade.Id">Update</a>
+            </td>
+            <td>
+                <a class="btn btn-danger w-100" asp-action="Delete" asp-route-id="@grade.Id">Delete</a>
+            </td>
+        </tr>
+    }
+</table>
